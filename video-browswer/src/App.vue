@@ -1,17 +1,24 @@
 <template>
     <div>
         <SearchBar @termChange="onTermChange"></SearchBar>
+        <VideoList :videos="videos"></VideoList>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
 import SearchBar from './components/SearchBar'
+import VideoList from './components/VideoList'
+
 const API_KEY = 'AIzaSyDBg-CynXDGpdK-oaJYOSaVOJwcsmUwf2g'
 export default {
     name: 'App', 
     components: {
-        SearchBar
+        SearchBar,
+        VideoList
+    },
+    data() {
+        return { videos: [] }
     },
     methods: {
         onTermChange(searchTerm) {
@@ -24,7 +31,7 @@ export default {
                     q: searchTerm
                 }
             }).then(response => {
-                console.log(response)
+                this.videos = response.data.items
             })
 
         }
