@@ -1,11 +1,18 @@
 <template>
-  <li>
-    VideoListItem
+  <li class="list-group-item">
+    {{video.snippet.title}}
   </li>
 </template>
 
 <script>
 export default {
-  name: 'VideoListItem'
+  name: 'VideoListItem',
+  props: {
+    video: Array
+  }
 }
 </script>
+
+<style scoped>
+  
+</style>
